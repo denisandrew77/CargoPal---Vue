@@ -5,3 +5,6 @@ import Decidingpage from './components/DriverPages/Decidingpage.vue';
 <template>
   <router-view/>
 </template>
+<style>
+@import "tailwindcss";
+</style>
