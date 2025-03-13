@@ -1,19 +1,25 @@
 <script setup>
 import siglaDenicar from '../../assets/sigla_denicar.jpg';
 import {useRouter} from 'vue-router'
+import {ref} from 'vue'
 const router = useRouter();
 function handleDriverButtonClick(){
  router.push('/driverSignIn');
 }
+const adminButtonVisibility=ref(true);
+function changeAdminVisibility(){
+  adminButtonVisibility.value=!adminButtonVisibility.value;
+}
+
 </script>
 <template>
     <div>
       <div class="flex justify-end relative">
-      <button @click="" id="toggleMenuButton" class="mt-3 mr-2">
+      <button @click="changeAdminVisibility" id="toggleMenuButton" class="mt-3 mr-2">
           <i class="bi bi-three-dots-vertical bg-gray-200 rounded-full p-2 text-xl active:bg-gray-300"></i>
       </button>
       <div id="hiddenButton" class="absolute top-12 right-2">
-          <button class="bg-orange-500 text-white px-4 py-2 rounded-md shadow hover:bg-orange-600 active:bg-orange-600">
+          <button v-if="adminButtonVisibility" class="bg-orange-500 text-white px-4 py-2 rounded-md shadow hover:bg-orange-600 active:bg-orange-600">
             Admin
           </button>
       </div>
