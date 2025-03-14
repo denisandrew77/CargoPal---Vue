@@ -9,6 +9,7 @@ import Header from '../PiecesOfText/Header.vue';
 import BigHeader from '../PiecesOfText/BigHeader.vue';
 import SecondHeader from '../PiecesOfText/SecondHeader.vue';
 import NavigateButton from '../NavigateButton/NavigateButton.vue';
+import { useLoadStatus } from '../../stores/loadStatus';
 
 const receivedData = localStorage.getItem("order");
 const OrderData=JSON.parse(receivedData);
@@ -17,7 +18,9 @@ OrderData.status="";
 const changeState=(state)=>{
     OrderData.status=state;
     console.log(OrderData);
+    console.log(loadStatus.leftForLoading.id);
 }
+const loadStatus = useLoadStatus();
 </script>
 <template>
     <BigHeader :state="'Incarcare'"/>
@@ -37,9 +40,9 @@ const changeState=(state)=>{
         <div class=" pl-2 py-2 rounded-md text-lg  bg-gray-100 shadow-lg">
             <SecondHeader/>
             <div class="space-y-2">
-                <StatusButton :name="'Pornire spre incarcare'" @status-change="changeState"/>
-                <StatusButton :name="'Sosire la incarcare'" @status-change="changeState"/>
-                <StatusButton :name="'Incarcat'" @status-change="changeState"/>
+                <StatusButton :name="loadStatus.leftForLoading.id" @status-change="changeState"/>
+                <StatusButton :name="loadStatus.arrivedAtLoading.id" @status-change="changeState"/>
+                <StatusButton :name="loadStatus.loaded.id" @status-change="changeState"/>
             </div>
         </div>
         <NavigateButton :path="'/delivery'"/>
