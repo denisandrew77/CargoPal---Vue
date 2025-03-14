@@ -33,7 +33,7 @@ function changeAdminVisibility(){
         </div>
         <div class="flex flex-col justify-center ">
             <div class="text-left mb-2">Sunt:</div>
-                <button @click=handleDriverButtonClick class="text-white font-semibold px-12 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 active:bg-orange-600 text-xl mb-5">Sofer</button>
+              <button @click=handleDriverButtonClick class="text-white font-semibold px-12 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 active:bg-orange-600 text-xl mb-5">Sofer</button>
               <button @click=handleCompanyButtonClick class="text-white font-semibold px-7 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 active:bg-orange-600 text-xl">Companie</button>
         </div>
     </div>

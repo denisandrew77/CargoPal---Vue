@@ -2,31 +2,33 @@ import { defineStore } from 'pinia'
 export const useLoadStatus = defineStore('loadStatus', {
     state: () => {
         return {
-            leftForLoading: {
-                disabledState: false,
+            isLeftForLoading: {
+                isDisabled: false,
                 checked: false,
                 tickVisibility: false,
             },
-            arrivedAtLoading: {
-                disabledState: false,
+            isArrivedAtLoading: {
+                isDisabled: true,
                 checked: false,
                 tickVisibility: false,
             },
-            loaded: {
-                disabledState: false,
+            isLoaded: {
+                isDisabled: true,
                 checked: false,
                 tickVisibility: false,
             },
-            arrivedAtUnloading: {
-                disabledState: false,
+            isArrivedAtUnloading: {
+                isDisabled: true,
                 checked: false,
                 tickVisibility: false,
             },
-            unloaded: {
-                disabledState: false,
+            isUnloaded: {
+                isDisabled: true,
                 checked: false,
                 tickVisibility: false,
             },
         }
+    },
+    actions: {
     }
 })
