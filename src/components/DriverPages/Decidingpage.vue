@@ -6,7 +6,10 @@ const router = useRouter();
 function handleDriverButtonClick(){
  router.push('/driverSignIn');
 }
-const adminButtonVisibility=ref(true);
+function handleCompanyButtonClick(){
+  router.push('/createCompanyAccount');
+}
+const adminButtonVisibility=ref(false);
 function changeAdminVisibility(){
   adminButtonVisibility.value=!adminButtonVisibility.value;
 }
