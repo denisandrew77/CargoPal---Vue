@@ -27,14 +27,14 @@ function authenticate(){
         </div>
         <div>
           <div class="flex justify-center">
-            <input v-model="plateNumber" class="focus:ring-2 focus:ring-blue-500 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500 md:w-80 lg:w-96" type="text" placeholder="Număr de înmatriculare">
+            <input v-model="plateNumber" class=" focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500 md:w-80 lg:w-96" type="text" placeholder="Număr de înmatriculare">
           </div> 
           <div class="mb-10 w-48 md:w-80 lg:w-96 text-sm text-left">
               Introdu numărul de înmatriculare a masinii
           </div>
         </div>
         <div>
-          <input v-model="orderNumber" class="focus:ring-2 focus:ring-blue-500 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500  md:w-80 lg:w-96" type="text" placeholder="Numărul comenzii">
+          <input v-model="orderNumber" class="focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500  md:w-80 lg:w-96" type="text" placeholder="Numărul comenzii">
           <div class="mb-10 w-48 md:w-80 lg:w-96 text-sm text-left">
             Introdu numărul comenzii
           </div>
