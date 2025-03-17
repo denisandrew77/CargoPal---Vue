@@ -18,9 +18,10 @@ OrderData.status="";
 const changeState=(state)=>{
     OrderData.status=state;
     console.log(OrderData);
-    console.log(loadStatus.leftForLoading.id);
+    console.log(state);
 }
 const loadStatus = useLoadStatus();
+console.log(loadStatus.leftForLoading.id);
 </script>
 <template>
     <BigHeader :state="'Incarcare'"/>
@@ -40,9 +41,9 @@ const loadStatus = useLoadStatus();
         <div class=" pl-2 py-2 rounded-md text-lg  bg-gray-100 shadow-lg">
             <SecondHeader/>
             <div class="space-y-2">
-                <StatusButton :name="loadStatus.leftForLoading.id" @status-change="changeState"/>
-                <StatusButton :name="loadStatus.arrivedAtLoading.id" @status-change="changeState"/>
-                <StatusButton :name="loadStatus.loaded.id" @status-change="changeState"/>
+                <StatusButton :statusButton="loadStatus.leftForLoading.id" @status-change="changeState"/>
+                <StatusButton :statusButton="loadStatus.arrivedAtLoading.id" @status-change="changeState"/>
+                <StatusButton :statusButton="loadStatus.loaded.id" @status-change="changeState"/>
             </div>
         </div>
         <NavigateButton :path="'/delivery'"/>

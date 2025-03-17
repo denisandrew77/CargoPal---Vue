@@ -3,31 +3,36 @@ export const useLoadStatus = defineStore('loadStatus', {
     state: () => {
         return {
             leftForLoading: {
-                id: "Pornire spre incarcare",
+                id: 1,
+                name: "Pornire spre incarcare",
                 isDisabled: false,
                 checked: false,
                 tickVisibility: "hidden",
             },
             arrivedAtLoading: {
-                id: "Sosire la incarcare",
+                id: 2,
+                name: "Sosire la incarcare",
                 isDisabled: true,
                 checked: false,
                 tickVisibility: "hidden",
             },
             loaded: {
-                id: "Incarcat",
+                id: 3,
+                name: "Incarcat",
                 isDisabled: true,
                 checked: false,
                 tickVisibility: "hidden",
             },
             arrivedAtUnloading: {
-                id: "Sosire la descarcare",
+                id: 4,
+                name: "Sosire la descarcare",
                 isDisabled: false,
                 checked: false,
                 tickVisibility: "hidden",
             },
             unloaded: {
-                id: "Descarcat",
+                id: 5,
+                name: "Descarcat",
                 isDisabled: true,
                 checked: false,
                 tickVisibility: "hidden",
