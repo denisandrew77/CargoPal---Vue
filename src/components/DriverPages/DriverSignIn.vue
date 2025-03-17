@@ -40,5 +40,5 @@ function authenticate(){
           </div>
         </div>
           <button @click="authenticate" class="text-white font-semibold px-7 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-lg text-xl">Activeaza</button>
-      </div>
+    </div>
 </template>
