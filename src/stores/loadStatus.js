@@ -36,27 +36,27 @@ export const useLoadStatus = defineStore('loadStatus', {
     },
     actions: {
         leaveForLoading() {
-            this.isLeftForLoading.checked = true;
-            this.isLeftForLoading.tickVisibility = "visible";
-            this.isArrivedAtLoading.isDisabled = false;
+            this.leftForLoading.checked = true;
+            this.leftForLoading.tickVisibility = "visible";
+            this.arrivedAtLoading.isDisabled = false;
         },
         arriveAtLoading() {
-            this.isArrivedAtLoading.checked = true;
-            this.isArrivedAtLoading.tickVisibility = "visible";
-            this.isLoaded.isDisabled = false;
+            this.arrivedAtLoading.checked = true;
+            this.arrivedAtLoading.tickVisibility = "visible";
+            this.loaded.isDisabled = false;
         },
         load() {
             this.isLoaded.checked = true;
             this.isLoaded.tickVisibility = "visible";
         },
         arriveAtUnloading() {
-            this.isArrivedAtUnloading.checked = true;
-            this.isArrivedAtUnloading.tickVisibility = "visible";
-            this.isUnloaded.isDisabled = false;
+            this.arrivedAtUnloading.checked = true;
+            this.arrivedAtUnloading.tickVisibility = "visible";
+            this.unloaded.isDisabled = false;
         },
         unload() {
-            this.isUnloaded.checked = true;
-            this.isUnloaded.tickVisibility = "visible";
+            this.unloaded.checked = true;
+            this.unloaded.tickVisibility = "visible";
         }
     }
 })
