@@ -10,17 +10,19 @@ import BigHeader from '../PiecesOfText/BigHeader.vue';
 import SecondHeader from '../PiecesOfText/SecondHeader.vue';
 import NavigateButton from '../NavigateButton/NavigateButton.vue';
 import { useLoadStatus } from '../../stores/loadStatus';
+import {computed} from 'vue';
 
 const receivedData = localStorage.getItem("order");
 const OrderData=JSON.parse(receivedData);
 OrderData.state="Loading";
 OrderData.status="";
-const changeState=(state)=>{
-    OrderData.status=state;    
-    loadStatus.advanceToNextDeliveryStep();
-}
 const loadStatus = useLoadStatus();
-console.log(loadStatus.leftForLoading.id);
+const changeState=(state)=>{
+    OrderData.status=state;
+}
+const navigateButtonState = computed(()=>{
+    return loadStatus.nextPageDisabledButton;
+})
 </script>
 <template>
     <BigHeader :state="'Incarcare'"/>
@@ -39,12 +41,10 @@ console.log(loadStatus.leftForLoading.id);
         </div>
         <div class=" pl-2 py-2 rounded-md text-lg  bg-gray-100 shadow-lg">
             <SecondHeader/>
-            <div class="space-y-2">
-                <StatusButton :name="loadStatus.leftForLoading.name" @status-change="changeState"/>
-                <StatusButton :name="loadStatus.arrivedAtLoading.name" @status-change="changeState"/>
-                <StatusButton :name="loadStatus.loaded.name" @status-change="changeState"/>
+            <div class="space-y-2" v-for="step in loadStatus.loadingStep">
+                <StatusButton :name="step.name" @status-change="changeState"/>
             </div>
         </div>
-        <NavigateButton :path="'/delivery'"/>
+        <NavigateButton :path="'/delivery'" :isDisabled="navigateButtonState"/>
     </div>
 </template>

@@ -1,22 +1,16 @@
 import { defineStore } from 'pinia'
-export const useLoadStatus = defineStore('loadStatus', {
+export const useDeliveryStatus = defineStore('deliveryStatus', {
     state: () => {
         return {
             loadingStep: [
                 {
-                    name: 'Pornire spre incarcare',
+                    name: 'Pornire spre descarcare',
                     checked: false,
                     isDisabled: false,
                     tickVisibility: 'hidden'
                 },
                 {
-                    name: 'Sosire la incarcare',
-                    checked: false,
-                    isDisabled: true,
-                    tickVisibility: 'hidden'
-                },
-                {
-                    name: 'Incarcat',
+                    name: 'Decarcat',
                     checked: false,
                     isDisabled: true,
                     tickVisibility: 'hidden'
@@ -26,19 +20,14 @@ export const useLoadStatus = defineStore('loadStatus', {
         }
     },
     actions: {
-        checkLeftForLoadingStep() {
+        checkLeftForUnloadingStep() {
             this.loadingStep[0].checked = true;
             this.loadingStep[0].tickVisibility = 'visible';
             this.loadingStep[1].isDisabled = false;
         },
-        checkArrivedAtLoadingStep() {
+        checkUnloadedStep() {
             this.loadingStep[1].checked = true;
             this.loadingStep[1].tickVisibility = 'visible';
-            this.loadingStep[2].isDisabled = false;
-        },
-        checkLoadedLoadingStep() {
-            this.loadingStep[2].checked = true;
-            this.loadingStep[2].tickVisibility = 'visible';
             this.nextPageDisabledButton = false;
         }
     }

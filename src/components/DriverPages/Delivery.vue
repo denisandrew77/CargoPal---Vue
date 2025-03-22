@@ -8,12 +8,17 @@ import Header from '../PiecesOfText/Header.vue';
 import BigHeader from '../PiecesOfText/BigHeader.vue';
 import SecondHeader from '../PiecesOfText/SecondHeader.vue';
 import NavigateButton from '../NavigateButton/NavigateButton.vue';
+import { useDeliveryStatus } from '../../stores/deliveryStatus';
+import {computed} from 'vue'
 
+const deliveryStatus = useDeliveryStatus();
 const receivedData = localStorage.getItem("order");
 const OrderData=JSON.parse(receivedData);
 OrderData.state="Delivery";
 console.log(OrderData);
-
+const navigateButtonState = computed(()=>{
+    return deliveryStatus.nextPageDisabledButton;
+})
 const changeState=(state)=>{
     OrderData.status=state;
     console.log(OrderData);
@@ -35,11 +40,10 @@ const changeState=(state)=>{
         </div>
         <div class=" pl-2 py-2 rounded-md text-lg  bg-gray-100 shadow-lg">
             <SecondHeader/>
-            <div class="space-y-2">
-                <StatusButton :name="'Sosire la descarcare'" @status-change="changeState"/>
-                <StatusButton :name="'Descarcat'" @status-change="changeState"/>
+            <div class="space-y-2" v-for="step in deliveryStatus.loadingStep">
+                <StatusButton :name="step.name" @status-change="changeState"/>
             </div>
         </div>
-        <NavigateButton :path="'/orderDone'"/>
+        <NavigateButton :path="'/orderDone'" :isDisabled="navigateButtonState"/>
     </div>
 </template>
