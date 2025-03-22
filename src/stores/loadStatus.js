@@ -40,28 +40,23 @@ export const useLoadStatus = defineStore('loadStatus', {
         }
     },
     actions: {
-        leaveForLoading() {
-            this.leftForLoading.checked = true;
-            this.leftForLoading.tickVisibility = "visible";
-            this.arrivedAtLoading.isDisabled = false;
+        findCurrent(name) {
+            for (const id in this) {
+                if (this[id].name === name)
+                    return this[id];
+            }
         },
-        arriveAtLoading() {
-            this.arrivedAtLoading.checked = true;
-            this.arrivedAtLoading.tickVisibility = "visible";
-            this.loaded.isDisabled = false;
-        },
-        load() {
-            this.isLoaded.checked = true;
-            this.isLoaded.tickVisibility = "visible";
-        },
-        arriveAtUnloading() {
-            this.arrivedAtUnloading.checked = true;
-            this.arrivedAtUnloading.tickVisibility = "visible";
-            this.unloaded.isDisabled = false;
-        },
-        unload() {
-            this.unloaded.checked = true;
-            this.unloaded.tickVisibility = "visible";
+        advanceToNextDeliveryStep(nextPlaceToAdvance) {
+            let foundUncheckedPlaces = false;
+            for (const id in this.state) {
+                if (this.state[id].name === nextPlaceToAdvance && foundUncheckedPlaces === false) {
+                    this.state[id].checked = true;
+                    this.state[id].tickVisibility = "visible"
+                }
+                if (this.state[id].checked === false) {
+                    foundUncheckedPlaces = true;
+                }
+            }
         }
     }
 })

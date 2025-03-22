@@ -16,9 +16,8 @@ const OrderData=JSON.parse(receivedData);
 OrderData.state="Loading";
 OrderData.status="";
 const changeState=(state)=>{
-    OrderData.status=state;
-    console.log(OrderData);
-    console.log(state);
+    OrderData.status=state;    
+    loadStatus.advanceToNextDeliveryStep();
 }
 const loadStatus = useLoadStatus();
 console.log(loadStatus.leftForLoading.id);
@@ -41,9 +40,9 @@ console.log(loadStatus.leftForLoading.id);
         <div class=" pl-2 py-2 rounded-md text-lg  bg-gray-100 shadow-lg">
             <SecondHeader/>
             <div class="space-y-2">
-                <StatusButton :statusButton="loadStatus.leftForLoading.id" @status-change="changeState"/>
-                <StatusButton :statusButton="loadStatus.arrivedAtLoading.id" @status-change="changeState"/>
-                <StatusButton :statusButton="loadStatus.loaded.id" @status-change="changeState"/>
+                <StatusButton :name="loadStatus.leftForLoading.name" @status-change="changeState"/>
+                <StatusButton :name="loadStatus.arrivedAtLoading.name" @status-change="changeState"/>
+                <StatusButton :name="loadStatus.loaded.name" @status-change="changeState"/>
             </div>
         </div>
         <NavigateButton :path="'/delivery'"/>
