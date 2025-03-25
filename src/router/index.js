@@ -6,6 +6,8 @@ import Loading from '../components/DriverPages/Loading.vue';
 import Delivery from '../components/DriverPages/Delivery.vue';
 import OrderDone from '../components/DriverPages/OrderDone.vue';
 import CreateCompanyAccount from '../components/CompanyPages/CreateCompanyAccount.vue';
+import CompanySignIn from '../components/CompanyPages/CompanySignIn.vue';
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -38,6 +40,11 @@ const router = createRouter({
             path: '/createCompanyAccount',
             name: 'CreateCompanyAccount',
             component: CreateCompanyAccount
+        },
+        {
+            path: '/companySignIn',
+            name: 'CompanySignIn',
+            component: CompanySignIn
         }
     ],
 })

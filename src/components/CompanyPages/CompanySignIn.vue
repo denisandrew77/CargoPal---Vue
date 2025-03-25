@@ -1,7 +1,6 @@
 <script setup>
 import siglaDenicar from '../../assets/sigla_denicar.jpg';
 import {ref} from 'vue';
-const companyName=ref('');
 const email=ref('');
 const password=ref('');
 function authenticate(){
@@ -16,9 +15,6 @@ function authenticate(){
           CargoPal
         </div>
        <div class="space-y-7">
-        <div class="flex justify-center">
-          <input v-model="companyName" class=" focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500 md:w-80 lg:w-96" type="text" placeholder="Numele companiei">
-        </div>
         <div>
           <input v-model="email" class="focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500  md:w-80 lg:w-96" type="text" placeholder="Email">
         </div>
