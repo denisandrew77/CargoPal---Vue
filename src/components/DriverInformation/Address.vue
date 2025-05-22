@@ -1,7 +1,11 @@
 <script setup>
+import { useOrderStatus } from '../../stores/orderStatus';
 const props = defineProps({
-    Order:Object
+    state:String
 });
+const orderStatus=useOrderStatus();
+const order = orderStatus.currentOrder;
+console.log(order)
 </script>
 <template>
     <div>
@@ -10,11 +14,11 @@ const props = defineProps({
             <div class="">Adresa</div>
             </div>
                 <div class="w-40 ml-5">
-                    {{Order.state==="Loading"?Order.Loading_at_company:Order.Delivery_at_company}}
-                    {{Order.state==="Loading"?Order.Loading:Order.Delivery}}
-                    {{Order.state==="Loading"?Order.Loading_postalcode:Order.Delivery_postalcode}}
-                    {{Order.state==="Loading"?Order.Loading_city:Order.Delivery_city}}
-                    {{Order.state==="Loading"?Order.Loading_country:Order.Delivery_country}} 
+                    {{state==="Loading"?order.Loading_at_company:order.Delivery_at_company}}
+                    {{state==="Loading"?order.Loading:order.Delivery}}
+                    {{state==="Loading"?order.Loading_postalcode:order.Delivery_postalcode}}
+                    {{state==="Loading"?order.Loading_city:order.Delivery_city}}
+                    {{state==="Loading"?order.Loading_country:order.Delivery_country}} 
                 </div>
             </div>
 </template>

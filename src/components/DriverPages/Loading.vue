@@ -11,31 +11,35 @@ import SecondHeader from '../PiecesOfText/SecondHeader.vue';
 import NavigateButton from '../NavigateButton/NavigateButton.vue';
 import { useLoadStatus } from '../../stores/loadStatus';
 import {computed} from 'vue';
+import { useOrderStatus } from '../../stores/orderStatus';
 
 const receivedData = localStorage.getItem("order");
 const OrderData=JSON.parse(receivedData);
-OrderData.state="Loading";
+const state="Loading";
 OrderData.status="";
 const loadStatus = useLoadStatus();
+const orderStatus = useOrderStatus();
 const changeState=(state)=>{
+    orderStatus.updateStatus(orderStatus.currentOrder.Order_number,state);
     OrderData.status=state;
 }
 const navigateButtonState = computed(()=>{
     return loadStatus.nextPageDisabledButton;
 })
+
 </script>
 <template>
-    <BigHeader :state="'Incarcare'"/>
+    <BigHeader :state="state"/>
         <div class="m-2 space-y-2">
         <div class="pl-2 py-2 rounded-md text-lg  bg-gray-100 shadow-lg">
-            <Header :state="'Incarcare'"/>
+            <Header :state="state"/>
             <div class="space-y-2 flex flex-col md:flex-row md:space-x-10">
-                <Address :Order="OrderData"/>
+                <Address :state="state"/>
                 <div>
-                    <Contact :Order="OrderData"/>
-                    <DateTime :Order="OrderData"/>
-                    <Refference :Order="OrderData"/>
-                    <Load :Order="OrderData"/>
+                    <Contact :state="state"/>
+                    <DateTime :state="state"/>
+                    <Refference :state="state"/>
+                    <Load/>
                 </div>
             </div>
         </div>

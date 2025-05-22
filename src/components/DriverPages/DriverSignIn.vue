@@ -4,17 +4,19 @@ import records from '../../data/data';
 import { ref } from 'vue';
 import {useRouter} from 'vue-router'
 import curentData from '../../data/curenData';
+import { useOrderStatus } from '../../stores/orderStatus';
 
 const emit = defineEmits(['orderData']);
 const router = useRouter();
 const plateNumber=ref('');
 const orderNumber=ref('');
-function authenticate(){
- const foundRecord=records.find(record=>record.Plate===plateNumber.value&&record.Order_number===Number(orderNumber.value));
- if(foundRecord!==undefined){
-    localStorage.setItem("order",JSON.stringify(foundRecord));
+const orderStatus=useOrderStatus();
+async function authenticate(){
+ await orderStatus.retrieveOrder(orderNumber.value,plateNumber.value);
+ if(orderStatus.currentOrder!=="Incorect credentials"){
     router.push('/loading');
  }
+ 
 }
 </script>
 <template>
