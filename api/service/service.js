@@ -21,10 +21,11 @@ export const editOrder = async (orderNumber, status) => {
     { Status: status },
     {
       where: {
-        Order_number: orderNumber
+        Order_number: orderNumber,
       },
     },
   );
+
 }
 ////others
 ///CREATE

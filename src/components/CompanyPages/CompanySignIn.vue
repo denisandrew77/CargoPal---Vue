@@ -14,6 +14,7 @@ function authenticate(){
         <div class="mb-10">
           CargoPal
         </div>
+        
        <div class="space-y-7">
         <div>
           <input v-model="email" class="focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500  md:w-80 lg:w-96" type="text" placeholder="Email">
@@ -23,5 +24,6 @@ function authenticate(){
         </div>
         </div>
           <button @click="authenticate" class="text-white font-semibold px-7 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-lg text-xl mt-7">Activeaza</button>
+         
     </div>
 </template>

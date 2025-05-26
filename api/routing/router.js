@@ -6,20 +6,20 @@ export const router = Router();
 router.get("/get-orders", (req, res) => {
   res.send(JSON.stringify(getOrders()));
 })
-router.get("/get-order", (req, res) => {
+router.get("/get-order", async (req, res) => {
   const orderNumber = parseInt(req.query.orderNumber, 10);
   const { plateNumber } = req.query;
-  if (getOrder(orderNumber, plateNumber) === false)
+  if (await getOrder(orderNumber, plateNumber) === false)
     res.send(JSON.stringify("Incorect credentials"));
-  else res.send(JSON.stringify(getOrder(orderNumber, plateNumber)))
+  else res.send(JSON.stringify(await getOrder(orderNumber, plateNumber)))
 })
 //POST
 //PUT
-router.put("/edit-order", (req, res) => {
+router.put("/edit-order", async (req, res) => {
   const { orderNumber } = req.body.data;
   const { status } = req.body.data;
-  editOrder(orderNumber, status);
-  res.send(status);
+  await editOrder(orderNumber, status);
+  res.send(status, orderNumber);
 })
 //DELETE
 //CREATE

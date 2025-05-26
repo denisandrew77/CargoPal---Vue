@@ -9,14 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@primeuix/themes": "^1.1.1",
     "@tailwindcss/vite": "^4.0.14",
     "axios": "^1.8.4",
     "bootstrap-icons": "^1.11.3",
     "pinia": "^3.0.1",
+    "primevue": "^3.47.3",
     "tailwindcss": "^4.0.14",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
-    "vuetify": "^3.7.18"
+    "vuetify": "^3.8.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

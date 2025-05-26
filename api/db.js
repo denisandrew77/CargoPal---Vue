@@ -1,12 +1,12 @@
 import { Sequelize, DataTypes } from "sequelize";
 const db = {
-  NAME: "cargopal_database",
+  NAME: "cargopal",
   USERNAME: "cargopal",
   PASSWORD: "cargopal",
   options: {
     dialect: "mysql",
     timezone: "+00:00",
-    host: "mysql.cargopal.local",
+    host: "mysql",
     port: 3306,
     logging: function (str) {
       console.log(str);

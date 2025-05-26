@@ -19,8 +19,8 @@ const state="Loading";
 OrderData.status="";
 const loadStatus = useLoadStatus();
 const orderStatus = useOrderStatus();
-const changeState=(state)=>{
-    orderStatus.updateStatus(orderStatus.currentOrder.Order_number,state);
+const changeState= async (state)=>{
+    await orderStatus.updateStatus(orderStatus.currentOrder.Order_number,state);
     OrderData.status=state;
 }
 const navigateButtonState = computed(()=>{

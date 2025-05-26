@@ -13,8 +13,8 @@ export const useOrderStatus = defineStore('orderStatus', {
                 console.log(this.currentOrder);
             })
         },
-        updateStatus(orderNumber, status) {
-            axios.put("http://localhost:3000/orders/edit-order", {
+        async updateStatus(orderNumber, status) {
+            await axios.put("http://localhost:3000/orders/edit-order", {
                 headers: {
                     "Content-Type": "application/json"
                 },
