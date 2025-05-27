@@ -15,6 +15,13 @@ const db = {
 };
 export const sequelize = new Sequelize(db.NAME, db.USERNAME, db.PASSWORD, db.options)
 export const orderDetails = sequelize.define("order_details", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
   Order_number: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -239,6 +246,27 @@ export const orderDetails = sequelize.define("order_details", {
       notEmpty: true
     },
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
 },
   {
     sequelize,
@@ -246,3 +274,54 @@ export const orderDetails = sequelize.define("order_details", {
     paranoid: true,
     timestamps: true
   })
+export const companies = sequelize.define("companies", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  company_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+})

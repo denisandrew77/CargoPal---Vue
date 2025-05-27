@@ -1,22 +1,13 @@
 import { orderDetails } from '../db.js';
+import { companies } from '../db.js';
 export const getOrders = () => {
   return orderRecords;
 }
 export const getOrder = async (orderNumber, carPlate) => {
-  /* const foundOrder = orderRecords.find(order => order.Order_number === orderNumber && order.Plate === carPlate)
-   if (!foundOrder) return false;
-   return foundOrder;
-   console.log(orderNumber, carPlate);
-   return foundOrder !== undefined ? foundOrder : false;*/
   const foundOrder = await orderDetails.findOne({ where: { Order_number: orderNumber, Plate: carPlate } });
   return foundOrder;
 }
 export const editOrder = async (orderNumber, status) => {
-  /*orderRecords.forEach(order => {
-    if (order.Order_number === orderNumber) {
-      order.Status = status;
-    }
-  });*/
   await orderDetails.update(
     { Status: status },
     {
@@ -25,7 +16,18 @@ export const editOrder = async (orderNumber, status) => {
       },
     },
   );
-
+}
+export const createCompany = async (companyName, email, password) => {
+  const [company, created] = await companies.findOrCreate(
+    {
+      where: { company_name: companyName },
+      defaults: {
+        email: email,
+        password: password,
+      },
+    }
+  );
+  return company, created;
 }
 ////others
 ///CREATE
