@@ -18,17 +18,21 @@ export const editOrder = async (orderNumber, status) => {
   );
 }
 export const createCompany = async (companyName, email, password) => {
-  const [company, created] = await companies.findOrCreate(
-    {
-      where: { company_name: companyName },
-      defaults: {
+  const findCompany = await companies.findOne({ where: { company_name: companyName, email: email, password: password } });
+  if (findCompany === null) {
+    const company = await companies.create(
+      {
+        company_name: companyName,
         email: email,
         password: password,
       },
-    }
-  );
-  return company, created;
-}
+    );
+    return company;
+  }
+  else if (findCompany !== null) {
+    return false;
+  }
+};
 ////others
 ///CREATE
 //GET

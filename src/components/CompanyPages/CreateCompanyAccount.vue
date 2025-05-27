@@ -1,10 +1,18 @@
 <script setup>
 import siglaDenicar from '../../assets/sigla_denicar.jpg';
 import {ref} from 'vue';
+import { useCompanyStatus } from '../../stores/companyStatus';
 const companyName=ref('');
 const email=ref('');
 const password=ref('');
-function authenticate(){
+const errorVisibility = ref(false);
+const companyStatus = useCompanyStatus();
+async function createAccount(){
+  if(email.value!=='' && password.value!=='' && companyName.value!=='')
+  {const createdCompany = await companyStatus.createCompany(companyName.value,email.value,password.value);
+    if(createdCompany===undefined){errorVisibility.value=true};
+  }
+  
 }
 </script>
 <template>
@@ -26,6 +34,10 @@ function authenticate(){
           <input v-model="password" class="focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500  md:w-80 lg:w-96" type="text" placeholder="Parola">
         </div>
         </div>
-          <button @click="authenticate" class="text-white font-semibold px-7 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-lg text-xl mt-7">Activeaza</button>
-    </div>
+          <button @click="createAccount" class="text-white font-semibold px-7 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-lg text-xl mt-7">Activeaza</button>
+        <div class="mt-3" v-if="errorVisibility">
+          Compania deja exista
+        </div>
+        </div>
+    
 </template>

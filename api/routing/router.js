@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { getOrder, getOrders, editOrder } from "../service/service.js"
-import { getOrdersByPlate, getOrdersByLocation, getOrdersByCarrier, deleteRecordByCarPlate, deleteRecordByOrderNumber } from "../service/service.js";
+import { getOrdersByPlate, getOrdersByLocation, getOrdersByCarrier, deleteRecordByCarPlate, createCompany } from "../service/service.js";
 export const router = Router();
 //GET
 router.get("/get-orders", (req, res) => {
@@ -14,6 +14,16 @@ router.get("/get-order", async (req, res) => {
   else res.send(JSON.stringify(await getOrder(orderNumber, plateNumber)))
 })
 //POST
+router.post("/create-company", async (req, res) => {
+  const { companyName, email, password } = req.body;
+  console.log(company);
+  const company = await createCompany(companyName, email, password);
+
+  if (company === false) {
+    res.send(JSON.stringify(false))
+  }
+  else res.send(JSON.stringify(company));
+});
 //PUT
 router.put("/edit-order", async (req, res) => {
   const { orderNumber } = req.body.data;

@@ -18,6 +18,7 @@ export const orderDetails = sequelize.define("order_details", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    primaryKey: true,
     validate: {
       notEmpty: true
     },
@@ -278,6 +279,8 @@ export const companies = sequelize.define("companies", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
     validate: {
       notEmpty: true
     },

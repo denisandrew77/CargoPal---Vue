@@ -11,7 +11,7 @@ export const useOrderStatus = defineStore('orderStatus', {
             return axios.get("http://localhost:3000/orders/get-order", { params: { orderNumber: orderNumber, plateNumber: plate } }).then(response => {
                 this.currentOrder = response.data;
                 console.log(this.currentOrder);
-            })
+            });
         },
         async updateStatus(orderNumber, status) {
             await axios.put("http://localhost:3000/orders/edit-order", {
