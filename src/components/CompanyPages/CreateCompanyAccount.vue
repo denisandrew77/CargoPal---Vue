@@ -2,6 +2,8 @@
 import siglaDenicar from '../../assets/sigla_denicar.jpg';
 import {ref} from 'vue';
 import { useCompanyStatus } from '../../stores/companyStatus';
+import {useRouter} from 'vue-router'
+const router = useRouter();
 const companyName=ref('');
 const email=ref('');
 const password=ref('');
@@ -9,10 +11,13 @@ const errorVisibility = ref(false);
 const companyStatus = useCompanyStatus();
 async function createAccount(){
   if(email.value!=='' && password.value!=='' && companyName.value!=='')
-  {const createdCompany = await companyStatus.createCompany(companyName.value,email.value,password.value);
-    if(createdCompany===undefined){errorVisibility.value=true};
+  {await companyStatus.createCompany(companyName.value,email.value,password.value);
+    if(Object.keys(companyStatus.currentCompany).length==0 &&companyStatus.currentCompany.constructor==Object){errorVisibility.value=true;}
+    else errorVisibility.value=false;
   }
-  
+}
+function navigateToSignIn(){
+  router.push("/companySignIn");
 }
 </script>
 <template>
@@ -38,6 +43,9 @@ async function createAccount(){
         <div class="mt-3" v-if="errorVisibility">
           Compania deja exista
         </div>
+          <div class="mt-4">
+            <a @click="navigateToSignIn" class="font-semibold text-orange-600 hover:text-orange-600">Ai deja cont? Logheaza-te</a>
+          </div>
         </div>
     
 </template>

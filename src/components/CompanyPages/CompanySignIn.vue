@@ -1,9 +1,15 @@
 <script setup>
 import siglaDenicar from '../../assets/sigla_denicar.jpg';
 import {ref} from 'vue';
+import {useRouter} from 'vue-router'
+const router=useRouter();
 const email=ref('');
 const password=ref('');
 function authenticate(){
+
+}
+function navigateToCreateCompanyAccount(){
+  router.push("/createCompanyAccount");
 }
 </script>
 <template>
@@ -15,7 +21,7 @@ function authenticate(){
           CargoPal
         </div>
         
-       <div class="space-y-7">
+       <div class="space-y-10 mt-4">
         <div>
           <input v-model="email" class="focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500  md:w-80 lg:w-96" type="text" placeholder="Email">
         </div>
@@ -23,7 +29,9 @@ function authenticate(){
           <input v-model="password" class="focus:bg-zinc-200 focus:outline-none p-4 rounded-lg bg-zinc-100 placeholder-stone-500  md:w-80 lg:w-96" type="text" placeholder="Parola">
         </div>
         </div>
-          <button @click="authenticate" class="text-white font-semibold px-7 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-lg text-xl mt-7">Activeaza</button>
-         
+          <button @click="authenticate" class="text-white font-semibold px-7 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-lg text-xl mt-13">Activeaza</button>
+        <div class="mt-4">
+            <a @click="navigateToCreateCompanyAccount" class="font-semibold text-orange-600 hover:text-orange-600">Creeaza cont</a>
+        </div>
     </div>
 </template>

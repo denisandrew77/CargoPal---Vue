@@ -7,7 +7,7 @@ function handleDriverButtonClick(){
  router.push('/driverSignIn');
 }
 function handleCompanyButtonClick(){
-  router.push('/createCompanyAccount');
+  router.push('/companySignIn');
 }
 const adminButtonVisibility=ref(false);
 function changeAdminVisibility(){

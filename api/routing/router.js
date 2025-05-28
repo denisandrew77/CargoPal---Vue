@@ -16,11 +16,9 @@ router.get("/get-order", async (req, res) => {
 //POST
 router.post("/create-company", async (req, res) => {
   const { companyName, email, password } = req.body;
-  console.log(company);
   const company = await createCompany(companyName, email, password);
-
   if (company === false) {
-    res.send(JSON.stringify(false))
+    res.send(JSON.stringify(false));
   }
   else res.send(JSON.stringify(company));
 });

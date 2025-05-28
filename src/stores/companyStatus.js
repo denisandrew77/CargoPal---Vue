@@ -20,6 +20,7 @@ export const useCompanyStatus = defineStore('companyStatus', {
                     this.currentCompany = response.data;
                 }
                 console.log(response.data);
+                console.log(this.currentCompany);
             });
         }
     }
