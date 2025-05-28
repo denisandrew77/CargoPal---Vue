@@ -22,6 +22,13 @@ export const useCompanyStatus = defineStore('companyStatus', {
                 console.log(response.data);
                 console.log(this.currentCompany);
             });
+        },
+        async getCompany(email, password) {
+            await axios.get("http://localhost:3000/orders/get-company",
+                { params: { email: email, password: password } }
+            ).then((response) => {
+                this.currentCompany = response.data;
+            });
         }
     }
 })

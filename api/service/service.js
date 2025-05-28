@@ -33,8 +33,12 @@ export const createCompany = async (companyName, email, password) => {
     return false;
   }
 };
-export const companySignIn = async (email, password) => {
-
+export const getCompany = async (email, password) => {
+  const findCompany = await companies.findOne({ where: { email: email, password: password } });
+  if (findCompany === null) {
+    return false;
+  }
+  else return findCompany;
 }
 ////others
 ///CREATE

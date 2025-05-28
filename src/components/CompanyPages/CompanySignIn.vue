@@ -2,11 +2,13 @@
 import siglaDenicar from '../../assets/sigla_denicar.jpg';
 import {ref} from 'vue';
 import {useRouter} from 'vue-router'
+import { useCompanyStatus } from '../../stores/companyStatus';
+const companyStatus=useCompanyStatus();
 const router=useRouter();
 const email=ref('');
 const password=ref('');
-function authenticate(){
-
+async function authenticate(){
+  await companyStatus.getCompany(email.value,password.value);
 }
 function navigateToCreateCompanyAccount(){
   router.push("/createCompanyAccount");

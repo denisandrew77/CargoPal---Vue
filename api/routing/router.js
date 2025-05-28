@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { getOrder, getOrders, editOrder } from "../service/service.js"
-import { getOrdersByPlate, getOrdersByLocation, getOrdersByCarrier, deleteRecordByCarPlate, createCompany } from "../service/service.js";
+import { getOrdersByPlate, getOrdersByLocation, getOrdersByCarrier, deleteRecordByCarPlate, createCompany, getCompany } from "../service/service.js";
 export const router = Router();
 //GET
 router.get("/get-orders", (req, res) => {
@@ -12,6 +12,14 @@ router.get("/get-order", async (req, res) => {
   if (await getOrder(orderNumber, plateNumber) === false)
     res.send(JSON.stringify("Incorect credentials"));
   else res.send(JSON.stringify(await getOrder(orderNumber, plateNumber)))
+})
+router.get("/get-company", async (req, res) => {
+  const { email, password } = req.query;
+  const company = await getCompany(email, password);
+  if (company === false) {
+    res.send(JSON.stringify(false));
+  }
+  else res.send(JSON.stringify(company));
 })
 //POST
 router.post("/create-company", async (req, res) => {
