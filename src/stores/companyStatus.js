@@ -48,6 +48,50 @@ export const useCompanyStatus = defineStore('companyStatus', {
             await axios.get("http://localhost:3000/orders/get-vehicles",
                 { params: { companyName: companyName } }
             ).then((response) => { console.log(response.data); this.companyVehicles = response.data })
+        },
+        async editVehicleLocation(plateNumber, city, country, postal_code) {
+            await axios.put("http://localhost:3000/orders/edit-location",
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: {
+                        plateNumber: plateNumber,
+                        city: city,
+                        country: country,
+                        postal_code: postal_code,
+                    },
+                }
+            ).then((response) => {
+                console.log(response.data);
+            });
+        },
+        async getVehicleLocation(plateNumber) {
+            await axios.get("http://localhost:3000/orders/get-vehicle-location",
+                { params: { plateNumber: plateNumber } }
+            ).then((response) => {
+                console.log(response.data);
+                console.log(this.companyVehicles);
+                for (let i = 0; i < this.companyVehicles.length; i++) {
+                    if (this.companyVehicles[i].plate_number === response.data.plate_number) {
+                        Object.defineProperties(this.companyVehicles[i], {
+                            city: {
+                                value: response.data.city,
+                                writable: true
+                            },
+                            country: {
+                                value: response.data.country,
+                                writable: true
+                            },
+                            postal_code: {
+                                value: response.data.postal_code,
+                                writable: true
+                            },
+                        });
+                        console.log(this.companyVehicles[i]);
+                    }
+                }
+            });
         }
     },
     persist: {

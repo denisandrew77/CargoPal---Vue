@@ -10,10 +10,12 @@ function navigateToAddNewVehicle(){
 console.log(company.companyVehicles);
 </script>
 <template>
-    <div v-for="vehicle in company.companyVehicles">
+    <div class="mx-2 mt-8">
+    <div v-for="vehicle in company.companyVehicles" class="mb-1">
         <IndividualCarCard :plateNumber="vehicle.plate_number"/>
     </div>
-<div class="fixed bottom-4 right-4 mb-4 mr-4">
-    <button class="px-3 py-2 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-md text-white font-bold" @click="navigateToAddNewVehicle">Adauga Masina <i class="bi bi-plus-circle-fill"></i></button>
-</div>
+    <div class="fixed bottom-4 right-4 mb-4 mr-4">
+        <button class="px-3 py-2 bg-orange-500 hover:bg-orange-600 active:bg-orange-600 rounded-md text-white font-bold" @click="navigateToAddNewVehicle">Adauga Masina <i class="bi bi-plus-circle-fill"></i></button>
+    </div>
+    </div>
 </template>

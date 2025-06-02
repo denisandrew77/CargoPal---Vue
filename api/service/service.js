@@ -1,5 +1,5 @@
 import { orderDetails, vehicles } from '../db.js';
-import { companies } from '../db.js';
+import { companies, vehicleLocation } from '../db.js';
 export const getOrders = () => {
   return orderRecords;
 }
@@ -65,6 +65,24 @@ export const getVehiclesByCompany = async (company_name) => {
     return false;
   }
   else return rows;
+};
+export const editLocation = async (plate_number, city, country, postal_code) => {
+  const [count] = await vehicleLocation.update(
+    {
+      city: city,
+      country: country,
+      postal_code: postal_code
+    },
+    {
+      where: {
+        plate_number: plate_number
+      }
+    });
+  return count;
+};
+export const getVehicleLocation = async (plate_number) => {
+  const location = await vehicleLocation.findOne({ where: { plate_number: plate_number } });
+  return location;
 }
 ////others
 ///CREATE

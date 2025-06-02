@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { getOrder, getOrders, editOrder } from "../service/service.js"
-import { getOrdersByPlate, getOrdersByLocation, getOrdersByCarrier, deleteRecordByCarPlate, createCompany, getCompany, createVehicle, getVehiclesByCompany } from "../service/service.js";
+import { getOrdersByPlate, getOrdersByLocation, getOrdersByCarrier, deleteRecordByCarPlate, createCompany, getCompany, createVehicle, getVehiclesByCompany, editLocation, getVehicleLocation } from "../service/service.js";
 export const router = Router();
 //GET
 router.get("/get-orders", (req, res) => {
@@ -29,7 +29,12 @@ router.get("/get-vehicles", async (req, res) => {
   }
   else res.send(JSON.stringify(vehicleList));
 
-})
+});
+router.get("/get-vehicle-location", async (req, res) => {
+  const { plateNumber } = req.query;
+  const vehicleLocation = await getVehicleLocation(plateNumber);
+  res.send(JSON.stringify(vehicleLocation));
+});
 //POST
 router.post("/create-company", async (req, res) => {
   const { companyName, email, password } = req.body;
@@ -45,13 +50,19 @@ router.post("/create-vehicle", async (req, res) => {
   console.log(vehicle.company_name);
   const createdVehicle = await createVehicle(vehicle);
   res.send(JSON.stringify(createdVehicle));
-})
+});
 //PUT
 router.put("/edit-order", async (req, res) => {
   const { orderNumber } = req.body.data;
   const { status } = req.body.data;
   await editOrder(orderNumber, status);
   res.send(status, orderNumber);
+});
+router.put("/edit-location", async (req, res) => {
+  const { plateNumber } = req.body.data;
+  const { city, country, postal_code } = req.body.data;
+  const rows = await editLocation(plateNumber, city, country, postal_code);
+  res.send(JSON.stringify(rows));
 })
 //DELETE
 ////////OTHERS
