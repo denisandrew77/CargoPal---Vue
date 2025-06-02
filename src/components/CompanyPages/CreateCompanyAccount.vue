@@ -15,6 +15,7 @@ async function createAccount(){
     if(Object.keys(companyStatus.currentCompany).length==0 &&companyStatus.currentCompany.constructor==Object){errorVisibility.value=true;}
     else errorVisibility.value=false;
   }
+  router.push("/companyMainMenu")
 }
 function navigateToSignIn(){
   router.push("/companySignIn");

@@ -328,3 +328,170 @@ export const companies = sequelize.define("companies", {
     },
   },
 })
+export const vehicles = sequelize.define("vehicles", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  company_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  plate_number: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  vehicle_type: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  weight_category: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  car_weight: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  usable_weight: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  lift: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  length: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  width: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  height: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+})
+export const vehicleLocation = sequelize.define("vehicle_location", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  plate_number: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  country: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  city: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  postal_code: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    },
+  },
+})
+companies.hasMany(vehicles);
+vehicles.belongsTo(companies);
+
+vehicles.hasOne(vehicleLocation);
+vehicleLocation.belongsTo(vehicles);

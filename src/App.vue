@@ -7,4 +7,7 @@ import Decidingpage from './components/DriverPages/Decidingpage.vue';
 </template>
 <style>
 @import "tailwindcss";
+@plugin "daisyui" {
+   themes: light --default
+ }
 </style>

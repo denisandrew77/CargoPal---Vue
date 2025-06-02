@@ -1,4 +1,4 @@
-import { orderDetails } from '../db.js';
+import { orderDetails, vehicles } from '../db.js';
 import { companies } from '../db.js';
 export const getOrders = () => {
   return orderRecords;
@@ -39,6 +39,32 @@ export const getCompany = async (email, password) => {
     return false;
   }
   else return findCompany;
+}
+export const createVehicle = async (vehicle) => {
+  const createdVehicle = await vehicles.create({
+    company_name: vehicle.company_name,
+    plate_number: vehicle.plate_number,
+    vehicle_type: vehicle.vehicle_type,
+    weight_category: vehicle.weight_category,
+    car_weight: vehicle.car_weight,
+    usable_weight: vehicle.usable_weight,
+    lift: vehicle.lift,
+    length: vehicle.length,
+    width: vehicle.width,
+    height: vehicle.height,
+  })
+  return createdVehicle;
+}
+export const getVehiclesByCompany = async (company_name) => {
+  const { count, rows } = await vehicles.findAndCountAll({
+    where: {
+      company_name: company_name
+    }
+  });
+  if (count === 0) {
+    return false;
+  }
+  else return rows;
 }
 ////others
 ///CREATE

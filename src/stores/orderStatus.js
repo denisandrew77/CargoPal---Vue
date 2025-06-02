@@ -23,5 +23,8 @@ export const useOrderStatus = defineStore('orderStatus', {
                 }
             }).then(response => { this.currentOrder.Status = response.data; console.log(response.data) })
         }
+    },
+    persist: {
+        storage: localStorage,
     }
 })

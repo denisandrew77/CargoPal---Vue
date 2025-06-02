@@ -3,12 +3,20 @@ import siglaDenicar from '../../assets/sigla_denicar.jpg';
 import {ref} from 'vue';
 import {useRouter} from 'vue-router'
 import { useCompanyStatus } from '../../stores/companyStatus';
+
 const companyStatus=useCompanyStatus();
 const router=useRouter();
 const email=ref('');
 const password=ref('');
 async function authenticate(){
   await companyStatus.getCompany(email.value,password.value);
+  console.log(companyStatus.currentCompany);
+  if(companyStatus.currentCompany!==false)
+  {
+    console.log(companyStatus.currentCompany.company_name);
+    await companyStatus.getVehiclesByCompany(companyStatus.currentCompany.company_name);
+    router.push("/companyMainMenu");
+  }
 }
 function navigateToCreateCompanyAccount(){
   router.push("/createCompanyAccount");
@@ -36,4 +44,5 @@ function navigateToCreateCompanyAccount(){
             <a @click="navigateToCreateCompanyAccount" class="font-semibold text-orange-600 hover:text-orange-600">Creeaza cont</a>
         </div>
     </div>
+    
 </template>

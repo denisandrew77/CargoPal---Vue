@@ -30,5 +30,8 @@ export const useDeliveryStatus = defineStore('deliveryStatus', {
             this.loadingStep[1].tickVisibility = 'visible';
             this.nextPageDisabledButton = false;
         }
+    },
+    persist: {
+        storage: localStorage,
     }
 })

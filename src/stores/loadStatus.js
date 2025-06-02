@@ -41,5 +41,8 @@ export const useLoadStatus = defineStore('loadStatus', {
             this.loadingStep[2].tickVisibility = 'visible';
             this.nextPageDisabledButton = false;
         }
+    },
+    persist: {
+        storage: localStorage,
     }
 })

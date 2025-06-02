@@ -7,6 +7,8 @@ import Delivery from '../components/DriverPages/Delivery.vue';
 import OrderDone from '../components/DriverPages/OrderDone.vue';
 import CreateCompanyAccount from '../components/CompanyPages/CreateCompanyAccount.vue';
 import CompanySignIn from '../components/CompanyPages/CompanySignIn.vue';
+import AddNewVehicle from '../components/CompanyPages/AddNewVehicle.vue';
+import CompanyMainMenu from '../components/CompanyPages/CompanyMainMenu.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +47,16 @@ const router = createRouter({
             path: '/companySignIn',
             name: 'CompanySignIn',
             component: CompanySignIn
+        },
+        {
+            path: '/addNewVehicle',
+            name: 'addNewVehicle',
+            component: AddNewVehicle
+        },
+        {
+            path: '/companyMainMenu',
+            name: 'CompanyMainMenu',
+            component: CompanyMainMenu
         }
     ],
 })
